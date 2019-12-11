@@ -1,0 +1,15 @@
+name: 'Office 365 CLI Run Script'
+description: 'Runs an Office 365 CLI script'
+inputs:
+  O365_CLI_SCRIPT_PATH:  
+    description: 'Relative path of the script in your repo.'
+  O365_CLI_SCRIPT:
+    description: 'Office 365 CLI Script'
+  IS_POWERSHELL:
+    description: 'Used only with O365_CLI_SCRIPT. If true the assumption is the script passed in O365_CLI_SCRIPT will be a PowerShell script, otherwise the assumption is bash script. Default is false'
+runs:
+  using: "node12"
+  main: "dist/index.js"
+branding:
+  icon: 'terminal'  
+  color: 'blue'
