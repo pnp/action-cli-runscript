@@ -8,8 +8,8 @@ inputs:
   IS_POWERSHELL:
     description: 'Used only with O365_CLI_SCRIPT. Default is true. If false the assumption is the script will be shell script i.e. .sh.'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "node12"
+  main: "dist/index.js"
 branding:
   icon: 'terminal'  
   color: 'blue'
