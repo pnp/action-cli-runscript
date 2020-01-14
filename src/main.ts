@@ -54,7 +54,7 @@ async function main() {
         } else {
             const o365CLIScript: string = core.getInput("O365_CLI_SCRIPT");
             const o365CLIScriptIsPS: string = core.getInput("IS_POWERSHELL");
-            const isPowerShell: boolean = o365CLIScriptIsPS == "true" || !o365CLIScriptIsPS.length ? true : false;
+            const isPowerShell: boolean = o365CLIScriptIsPS == "true" ? true : false;
             if (o365CLIScript) {
                 let o365CLIScriptFilePath: string = '';
                 try {
@@ -63,7 +63,11 @@ async function main() {
                     if (isPowerShell) {
                         await exec('pwsh', ['-f', o365CLIScriptFilePath]);
                     } else {
-                        await exec(o365CLIScriptFilePath);
+                        if(process.env.RUNNER_OS == "Windows")  {
+                            await exec(`bash ${o365CLIScriptFilePath}`);
+                        } else {
+                            await exec(o365CLIScriptFilePath);
+                        }
                     }
                     core.info("✅ Script execution complete.");
                 } catch (err) {

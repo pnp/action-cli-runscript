@@ -9,6 +9,9 @@ This GitHub Action (created using typescript) uses [Office 365 CLI](https://pnp.
 ### Pre-requisites
 Create a workflow `.yml` file in `.github/workflows` directory of your repo. An [example workflow](#example-workflow---office-365-cli-runscript) is available below. For more information, reference the GitHub Help Documentation for [Creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
 
+#### Self-hosted runners
+If self-hosted runners are used for running the workflow, then please make sure that they have `PowerShell` or `bash` installed on them. 
+
 ### Note
 This action is dependant on `action-cli-login`. So in the workflow we need to run  `action-cli-login` before using this action.
 
@@ -19,9 +22,9 @@ Since `action-cli-login` requires user name and password which are sensitive pie
 These secrets are encrypted and can only be used by GitHub actions.
 
 ### Inputs
-- `O365_CLI_SCRIPT` : The script to run
 - `O365_CLI_SCRIPT_PATH` : Relative path of the script in your repo.
-- `IS_POWERSHELL` : `true|false` Used only with O365_CLI_SCRIPT. Default is true. If false the assumption is the script will be shell script i.e. .sh.
+- `O365_CLI_SCRIPT` : The script to run
+- `IS_POWERSHELL` : `true|false` Used only with **O365_CLI_SCRIPT**. Default is false. If true the assumption is the script passed in `O365_CLI_SCRIPT` will be a PowerShell script.
 
 One of `O365_CLI_SCRIPT_PATH` / `O365_CLI_SCRIPT` is mandatory, in case both are defined `O365_CLI_SCRIPT_PATH` gets preference.
 
