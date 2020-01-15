@@ -44,7 +44,7 @@ async function main() {
                 if (fileExtension == "ps1") {
                     await exec('pwsh', ['-f', o365CLIScriptPath]);
                 } else {
-                    await exec(o365CLIScriptPath);
+                    await exec(`bash ${o365CLIScriptPath}`);
                 }
                 core.info("✅ Script execution complete.");
             } else {
@@ -63,11 +63,7 @@ async function main() {
                     if (isPowerShell) {
                         await exec('pwsh', ['-f', o365CLIScriptFilePath]);
                     } else {
-                        if(process.env.RUNNER_OS == "Windows")  {
-                            await exec(`bash ${o365CLIScriptFilePath}`);
-                        } else {
-                            await exec(o365CLIScriptFilePath);
-                        }
+                        await exec(`bash ${o365CLIScriptFilePath}`);
                     }
                     core.info("✅ Script execution complete.");
                 } catch (err) {
