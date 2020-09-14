@@ -9,7 +9,7 @@ const TEMP_DIRECTORY: string = process.env.RUNNER_TEMP || tmpdir();
 
 async function createScriptFile(inlineScript: string, powershell: boolean): Promise<string> {
     const fileExtension: string = powershell ? "ps1" : "sh";
-    const fileName: string = `O365_CLI_GITHUB_ACTION_${new Date().getTime().toString()}.${fileExtension}`;
+    const fileName: string = `CLI_MICROSOFT365_GITHUB_ACTION_${new Date().getTime().toString()}.${fileExtension}`;
     const filePath: string = join(TEMP_DIRECTORY, fileName);
     writeFileSync(filePath, `${inlineScript}`);
     chmodSync(filePath, 0o755);
@@ -31,17 +31,17 @@ async function deleteFile(filePath: string) {
 async function main() {
 
     try {
-        await which("o365", true);
-        const o365CLIScriptPath = core.getInput("O365_CLI_SCRIPT_PATH");
-        if (o365CLIScriptPath) {
+        await which("m365", true);
+        const cliMicrosoft365ScriptPath = core.getInput("CLI_MICROSOFT365_SCRIPT_PATH");
+        if (cliMicrosoft365ScriptPath) {
             core.info("ℹ️ Executing script from file...");
-            if (existsSync(o365CLIScriptPath)) {
-                const fileExtension = o365CLIScriptPath.split('.').pop();
-                chmodSync(o365CLIScriptPath, 0o755);
+            if (existsSync(cliMicrosoft365ScriptPath)) {
+                const fileExtension = cliMicrosoft365ScriptPath.split('.').pop();
+                chmodSync(cliMicrosoft365ScriptPath, 0o755);
                 if (fileExtension == "ps1") {
-                    await exec('pwsh', ['-f', o365CLIScriptPath]);
+                    await exec('pwsh', ['-f', cliMicrosoft365ScriptPath]);
                 } else {
-                    await exec(`bash ${o365CLIScriptPath}`);
+                    await exec(`bash ${cliMicrosoft365ScriptPath}`);
                 }
                 core.info("✅ Script execution complete.");
             } else {
@@ -49,25 +49,25 @@ async function main() {
                 core.setFailed("Path incorrect.");
             }
         } else {
-            const o365CLIScript: string = core.getInput("O365_CLI_SCRIPT");
-            const o365CLIScriptIsPS: string = core.getInput("IS_POWERSHELL");
-            const isPowerShell: boolean = o365CLIScriptIsPS == "true" ? true : false;
-            if (o365CLIScript) {
-                let o365CLIScriptFilePath: string = '';
+            const cliMicrosoft365Script: string = core.getInput("CLI_MICROSOFT365_SCRIPT");
+            const cliMicrosoft365ScriptIsPS: string = core.getInput("IS_POWERSHELL");
+            const isPowerShell: boolean = cliMicrosoft365ScriptIsPS == "true" ? true : false;
+            if (cliMicrosoft365Script) {
+                let cliMicrosoft365ScriptFilePath: string = '';
                 try {
                     core.info("ℹ️ Executing script that was passed...");
-                    o365CLIScriptFilePath = await createScriptFile(o365CLIScript, isPowerShell);
+                    cliMicrosoft365ScriptFilePath = await createScriptFile(cliMicrosoft365Script, isPowerShell);
                     if (isPowerShell) {
-                        await exec('pwsh', ['-f', o365CLIScriptFilePath]);
+                        await exec('pwsh', ['-f', cliMicrosoft365ScriptFilePath]);
                     } else {
-                        await exec(`bash ${o365CLIScriptFilePath}`);
+                        await exec(`bash ${cliMicrosoft365ScriptFilePath}`);
                     }
                     core.info("✅ Script execution complete.");
                 } catch (err) {
                     core.error("🚨 Executing script failed.");
                     core.setFailed(err);
                 } finally {
-                    await deleteFile(o365CLIScriptFilePath);
+                    await deleteFile(cliMicrosoft365ScriptFilePath);
                 }
 
             } else {
