@@ -980,7 +980,7 @@ const TEMP_DIRECTORY = process.env.RUNNER_TEMP || os_1.tmpdir();
 function createScriptFile(inlineScript, powershell) {
     return __awaiter(this, void 0, void 0, function* () {
         const fileExtension = powershell ? "ps1" : "sh";
-        const fileName = `O365_CLI_GITHUB_ACTION_${new Date().getTime().toString()}.${fileExtension}`;
+        const fileName = `CLI_MICROSOFT365_GITHUB_ACTION_${new Date().getTime().toString()}.${fileExtension}`;
         const filePath = path_1.join(TEMP_DIRECTORY, fileName);
         fs_1.writeFileSync(filePath, `${inlineScript}`);
         fs_1.chmodSync(filePath, 0o755);
@@ -1002,18 +1002,18 @@ function deleteFile(filePath) {
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield io_1.which("o365", true);
-            const o365CLIScriptPath = core.getInput("O365_CLI_SCRIPT_PATH");
-            if (o365CLIScriptPath) {
+            yield io_1.which("m365", true);
+            const cliMicrosoft365ScriptPath = core.getInput("CLI_MICROSOFT365_SCRIPT_PATH");
+            if (cliMicrosoft365ScriptPath) {
                 core.info("ℹ️ Executing script from file...");
-                if (fs_1.existsSync(o365CLIScriptPath)) {
-                    const fileExtension = o365CLIScriptPath.split('.').pop();
-                    fs_1.chmodSync(o365CLIScriptPath, 0o755);
+                if (fs_1.existsSync(cliMicrosoft365ScriptPath)) {
+                    const fileExtension = cliMicrosoft365ScriptPath.split('.').pop();
+                    fs_1.chmodSync(cliMicrosoft365ScriptPath, 0o755);
                     if (fileExtension == "ps1") {
-                        yield exec_1.exec('pwsh', ['-f', o365CLIScriptPath]);
+                        yield exec_1.exec('pwsh', ['-f', cliMicrosoft365ScriptPath]);
                     }
                     else {
-                        yield exec_1.exec(`bash ${o365CLIScriptPath}`);
+                        yield exec_1.exec(`bash ${cliMicrosoft365ScriptPath}`);
                     }
                     core.info("✅ Script execution complete.");
                 }
@@ -1023,19 +1023,19 @@ function main() {
                 }
             }
             else {
-                const o365CLIScript = core.getInput("O365_CLI_SCRIPT");
-                const o365CLIScriptIsPS = core.getInput("IS_POWERSHELL");
-                const isPowerShell = o365CLIScriptIsPS == "true" ? true : false;
-                if (o365CLIScript) {
-                    let o365CLIScriptFilePath = '';
+                const cliMicrosoft365Script = core.getInput("CLI_MICROSOFT365_SCRIPT");
+                const cliMicrosoft365ScriptIsPS = core.getInput("IS_POWERSHELL");
+                const isPowerShell = cliMicrosoft365ScriptIsPS == "true" ? true : false;
+                if (cliMicrosoft365Script) {
+                    let cliMicrosoft365ScriptFilePath = '';
                     try {
                         core.info("ℹ️ Executing script that was passed...");
-                        o365CLIScriptFilePath = yield createScriptFile(o365CLIScript, isPowerShell);
+                        cliMicrosoft365ScriptFilePath = yield createScriptFile(cliMicrosoft365Script, isPowerShell);
                         if (isPowerShell) {
-                            yield exec_1.exec('pwsh', ['-f', o365CLIScriptFilePath]);
+                            yield exec_1.exec('pwsh', ['-f', cliMicrosoft365ScriptFilePath]);
                         }
                         else {
-                            yield exec_1.exec(`bash ${o365CLIScriptFilePath}`);
+                            yield exec_1.exec(`bash ${cliMicrosoft365ScriptFilePath}`);
                         }
                         core.info("✅ Script execution complete.");
                     }
@@ -1044,7 +1044,7 @@ function main() {
                         core.setFailed(err);
                     }
                     finally {
-                        yield deleteFile(o365CLIScriptFilePath);
+                        yield deleteFile(cliMicrosoft365ScriptFilePath);
                     }
                 }
                 else {
