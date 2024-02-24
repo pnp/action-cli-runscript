@@ -40,26 +40,26 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [18.x]
     
     steps:
     
     # CLI for Microsoft 365 login action
     - name: Login to tenant
-      uses: pnp/action-cli-login@v2.0.0
+      uses: pnp/action-cli-login@v3
       with:
         ADMIN_USERNAME:  ${{ secrets.adminUsername }}
         ADMIN_PASSWORD:  ${{ secrets.adminPassword }}
     
     # CLI for Microsoft 365 runscript action option 1 (single line of script as input)
     - name: Send email
-      uses: pnp/action-cli-runscript@v2.0.0
+      uses: pnp/action-cli-runscript@v3
       with:
         CLI_MICROSOFT365_SCRIPT: m365 spo mail send --webUrl https://contoso.sharepoint.com/sites/teamsite --to 'user@contoso.onmicrosoft.com' --subject 'Deployment done' --body '<h2>CLI for Microsoft 365</h2> <p>The deployment is complete.</p> <br/> Email sent via CLI for Microsoft 365 GitHub Action.'
     
     # CLI for Microsoft 365 runscript action option 2 (script file as input)
     - name: Create lists
-      uses: pnp/action-cli-runscript@v2.0.0
+      uses: pnp/action-cli-runscript@v3
       with:
         CLI_MICROSOFT365_SCRIPT_PATH: ./script/lists.ps1 
         #lists.ps1 will have all the required CLI for Microsoft 365 commands
@@ -70,9 +70,13 @@ If self-hosted runners are used for running the workflow, then please make sure 
 
 ## Release notes
 
+### v3.0.0
+
+- Bumped to Node version 20
+
 ### v2.0.0
 
 - Renames action to 'CLI for Microsoft 365 Runscript'
 
 ### v1.0.0
-- Added inital 'CLI for Microsoft 365 runscript' GitHub action solving #2
+- Added initial 'CLI for Microsoft 365 runscript' GitHub action solving #2

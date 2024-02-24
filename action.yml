@@ -8,7 +8,7 @@ inputs:
   IS_POWERSHELL:
     description: 'Used only with CLI_MICROSOFT365_SCRIPT. If true the assumption is the script passed in CLI_MICROSOFT365_SCRIPT will be a PowerShell script, otherwise the assumption is bash script. Default is false'
 runs:
-  using: "node12"
+  using: "node20"
   main: "dist/index.js"
 branding:
   icon: 'terminal'  

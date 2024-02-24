@@ -1,6 +1,6 @@
 {
   "name": "@pnp/action-cli-runscript",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "A GitHub Action that runs a CLI for Microsoft 365 script",
   "main": "dist/index.js",
   "scripts": {
@@ -14,11 +14,6 @@
       "web": "https://blog.mastykarz.nl"
     },
     {
-      "name": "Velin Georgiev",
-      "email": "velin.georgiev@gmail.com",
-      "web": "https://blog.velingeorgiev.com"
-    },
-    {
       "name": "Garry Trinder",
       "email": "garry.trinder@live.com",
       "web": "https://garrytrinder.github.io/"
@@ -29,13 +24,34 @@
       "web": "https://www.cloudappie.nl/"
     },
     {
-      "name": "Rabia Williams",
-      "email": "rabiawilliams@gmail.com",
-      "web": "https://rabiawilliams.com/"
+      "name": "Arjun Menon",
+      "email": "arjun.umenon@gmail.com",
+      "web": "https://arjunumenon.com/"
+    },
+    {
+      "name": "Adam Wojcik",
+      "email": "adam.wojcik.it@gmail.com",
+      "web": "https://github.com/Adam-it/"
+    },
+    {
+      "name": "Martin Lingstuyl",
+      "email": "mlingstuyl@live.com",
+      "web": "https://www.blimped.nl/"
+    },
+    {
+      "name": "Jasey Waegebaert",
+      "email": "38426621+Jwaegebaert@users.noreply.github.com",
+      "web": "https://github.com/Jwaegebaert"
+    },
+    {
+      "name": "Milan Holemans",
+      "email": "11723921+milanholemans@users.noreply.github.com",
+      "web": "https://github.com/milanholemans"
     }
   ],
   "contributors": [
     "Georgiev, Velin <velin.georgiev@gmail.com>",
+    "Holemans, Milan <11723921+milanholemans@users.noreply.github.com>",
     "Mastykarz, Waldek <waldek@mastykarz.nl>",
     "Tatti, Anoop <anoop@live.co.uk>",
     "Trinder, Garry <garry.trinder@live.com>"
