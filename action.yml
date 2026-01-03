@@ -4,11 +4,11 @@ inputs:
   CLI_MICROSOFT365_SCRIPT_PATH:  
     description: 'Relative path of the script in your repo.'
   CLI_MICROSOFT365_SCRIPT:
-    description: 'CLI for Microsoft 365 Script'
+    description: 'CLI for Microsoft 365 Script.'
   IS_POWERSHELL:
-    description: 'Used only with CLI_MICROSOFT365_SCRIPT. If true the assumption is the script passed in CLI_MICROSOFT365_SCRIPT will be a PowerShell script, otherwise the assumption is bash script. Default is false'
+    description: 'Used only with CLI_MICROSOFT365_SCRIPT. If true the assumption is the script passed in CLI_MICROSOFT365_SCRIPT will be a PowerShell script, otherwise the assumption is bash script. Default is false.'
 runs:
-  using: "node20"
+  using: "node24"
   main: "dist/index.js"
 branding:
   icon: 'terminal'  
