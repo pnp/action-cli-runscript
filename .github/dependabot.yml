@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Monthly dependency updates
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    labels:
+      - pr-priority
+    groups:
+      update-dependencies:
+        patterns:
+          - "*"
+    versioning-strategy: increase
+    open-pull-requests-limit: 1
