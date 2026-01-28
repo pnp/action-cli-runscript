@@ -103,13 +103,13 @@
     "yammer"
   ],
   "dependencies": {
-    "@actions/core": "^1.6.0",
-    "@actions/exec": "^1.1.0",
-    "@actions/io": "^1.1.1"
+    "@actions/core": "^2.0.3",
+    "@actions/exec": "^3.0.0",
+    "@actions/io": "^3.0.2"
   },
   "devDependencies": {
-    "@types/node": "^16.11.6",
-    "@vercel/ncc": "^0.31.1",
-    "typescript": "^4.4.4"
+    "@types/node": "^25.1.0",
+    "@vercel/ncc": "^0.38.4",
+    "typescript": "^5.9.3"
   }
 }
