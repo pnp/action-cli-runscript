@@ -13,3 +13,13 @@ updates:
           - "*"
     versioning-strategy: increase
     open-pull-requests-limit: 1
+    ignore:
+      # @actions v3.x packages are pure ESM and incompatible with @vercel/ncc
+      - dependency-name: "@actions/core"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@actions/exec"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@actions/io"
+        update-types: ["version-update:semver-major"]
+      # Node types should be updated manually to match target runtime
+      - dependency-name: "@types/node"
