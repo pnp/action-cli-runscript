@@ -4,7 +4,10 @@
   "description": "A GitHub Action that runs a CLI for Microsoft 365 script",
   "main": "dist/index.js",
   "scripts": {
-    "build": "ncc build src/main.ts"
+    "build": "ncc build src/main.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "author": "Tatti, Anoop <anoop@live.co.uk>",
   "maintainers": [
@@ -110,6 +113,8 @@
   "devDependencies": {
     "@types/node": "^24.10.4",
     "@vercel/ncc": "^0.38.4",
-    "typescript": "^5.9.3"
+    "@vitest/coverage-v8": "^4.0.18",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   }
 }
